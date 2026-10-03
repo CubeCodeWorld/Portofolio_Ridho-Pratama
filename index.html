@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio Ridho Pratama — Communication graduate with experience in media production, sales, digital content, and community projects." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>Ridho Pratama — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#0a0a0a;
+      --text:#151515;
+      --muted:#77736f;
+      --line:#e8e5e2;
+      --surface:#f4f2ef;
+      --surface-2:#e8e4df;
+      --accent:#962b3b;
+      --accent-2:#c54b5e;
+      --accent-soft:#f2dfe2;
+      --dark:#0b0b0c;
+      --radius:2rem;
+      --radius-sm:1.25rem;
+      --shell:88rem;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;background:var(--bg)}
+    body{font-family:'Onest',system-ui,-apple-system,Segoe UI,sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden}
+    body.lock{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+    img{display:block;max-width:100%}
+    ul{list-style:none}
+    :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .shell{width:min(calc(100% - 2.5rem),var(--shell));margin-inline:auto}
+    .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-size:.82rem;font-weight:600;letter-spacing:.02em;color:rgba(17,17,17,.62)}
+    .eyebrow::before{content:"";width:.4rem;height:.4rem;border-radius:50%;background:var(--accent)}
+    .eyebrow.light{color:rgba(255,255,255,.68)}
+    .eyebrow.light::before{background:#fff}
+    .section-title{font-size:clamp(2.35rem,5vw,4.7rem);line-height:.98;letter-spacing:-.045em;font-weight:600}
+    .section-copy{max-width:42rem;font-size:1rem;line-height:1.7;color:var(--muted)}
+    .pill{display:inline-flex;align-items:center;gap:.8rem;border-radius:999px;padding:.82rem 1.15rem .82rem 1.35rem;font-size:.88rem;font-weight:600;transition:.3s ease}
+    .pill:hover{transform:translateY(-2px)}
+    .pill.dark{background:var(--ink);color:#fff}
+    .pill.light{background:#fff;color:var(--ink)}
+    .pill.outline{border:1px solid var(--line);background:rgba(255,255,255,.72)}
+    .pill .arrow{width:2rem;height:2rem;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--ink)}
+    .pill.light .arrow,.pill.outline .arrow{background:var(--ink);color:#fff}
+
+    /* Loader */
+    #loader{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;background:var(--ink);color:#fff;transition:transform .8s cubic-bezier(.22,1,.36,1);border-radius:0 0 2rem 2rem}
+    #loader.exit{transform:translateY(-100%)}
+    .loader-box{width:min(24rem,76vw);display:flex;flex-direction:column;gap:1.4rem}
+    .loader-brand{display:flex;align-items:center;gap:.8rem;font-size:1.45rem;font-weight:600}
+    .rp-mark{width:2.3rem;height:2.3rem;border-radius:.7rem;background:linear-gradient(135deg,var(--accent-2),var(--accent));display:grid;place-items:center;color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.04em;transform:rotate(8deg)}
+    .loader-tag{font-size:.88rem;color:rgba(255,255,255,.5);max-width:26ch}
+    .loader-track{height:1px;background:rgba(255,255,255,.16);overflow:hidden}
+    .loader-fill{height:100%;width:0;background:var(--accent-2)}
+    .loader-meta{display:flex;justify-content:space-between;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.48)}
+
+    /* Header */
+    .header{position:absolute;inset-inline:0;top:0;z-index:80;opacity:0;transform:translateY(-12px);transition:.7s cubic-bezier(.22,1,.36,1)}
+    .header.ready{opacity:1;transform:none}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:1.35rem 0;gap:1.3rem}
+    .brand{display:flex;align-items:center;gap:.7rem;font-size:1.05rem;font-weight:650;letter-spacing:-.02em}
+    .brand .rp-mark{width:1.8rem;height:1.8rem;border-radius:.52rem;font-size:.58rem}
+    .nav{display:none}
+    .nav ul{display:flex;gap:1.8rem;font-size:.85rem;font-weight:500}
+    .nav a,.nav button{opacity:.72;transition:.25s}
+    .nav a:hover,.nav button:hover{opacity:1;transform:translateY(-1px)}
+    .header-actions{display:flex;align-items:center;gap:.55rem}
+    .location-chip{display:none;padding:.58rem .85rem;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.5);backdrop-filter:blur(12px);border-radius:.9rem;font-size:.72rem;color:rgba(17,17,17,.68)}
+    .menu-btn{padding:.65rem .9rem;border:1px solid rgba(255,255,255,.42);background:rgba(255,255,255,.55);backdrop-filter:blur(12px);border-radius:.9rem;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+    @media(min-width:760px){.location-chip{display:block}}
+    @media(min-width:1040px){.nav{display:block}}
+
+    /* Hero */
+    .hero{position:relative;overflow:hidden;background:linear-gradient(145deg,#eee9e7 0%,#ded8d4 48%,#c9c5c2 100%);border-radius:0 0 var(--radius) var(--radius);min-height:100svh;isolation:isolate}
+    .hero::before{content:"";position:absolute;width:44rem;height:44rem;border-radius:50%;right:-8rem;top:-10rem;background:radial-gradient(circle,rgba(197,75,94,.24),rgba(197,75,94,0) 68%);filter:blur(6px);z-index:0}
+    .hero-noise{position:absolute;inset:0;opacity:.18;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E")}
+    .hero-watermark{position:absolute;left:0;right:0;bottom:6.2rem;text-align:center;font-size:clamp(6rem,16vw,14rem);font-weight:700;letter-spacing:-.07em;color:rgba(255,255,255,.36);line-height:.8;z-index:0;user-select:none;opacity:0;transform:translateY(22px);transition:1s cubic-bezier(.22,1,.36,1)}
+    .hero-watermark.ready{opacity:1;transform:none}
+    .hero-grid{position:relative;z-index:3;min-height:calc(100svh - 4.2rem);padding:7.5rem 0 4.5rem;display:grid;grid-template-columns:1fr;gap:2.5rem;align-items:center}
+    .hero-copy{display:flex;flex-direction:column;align-items:flex-start;gap:1.45rem}
+    .hero-copy>*{opacity:0;transform:translateY(20px);transition:.8s cubic-bezier(.16,1,.3,1)}
+    .hero-copy.ready>*{opacity:1;transform:none}
+    .hero-copy.ready>*:nth-child(2){transition-delay:.09s}.hero-copy.ready>*:nth-child(3){transition-delay:.18s}.hero-copy.ready>*:nth-child(4){transition-delay:.27s}.hero-copy.ready>*:nth-child(5){transition-delay:.36s}
+    .hero h1{font-size:clamp(3.45rem,8.2vw,7.6rem);font-weight:650;line-height:.88;letter-spacing:-.06em;max-width:10.5ch}
+    .hero h1 .soft{color:rgba(17,17,17,.42)}
+    .hero-desc{max-width:38rem;font-size:clamp(.96rem,1.4vw,1.15rem);line-height:1.65;color:rgba(17,17,17,.66)}
+    .hero-meta{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;font-size:.78rem;font-weight:600;color:rgba(17,17,17,.62)}
+    .hero-meta span{display:inline-flex;align-items:center;gap:.45rem}
+    .hero-meta span::before{content:"";width:.35rem;height:.35rem;background:var(--accent);border-radius:50%}
+    .hero-ctas{display:flex;gap:.7rem;flex-wrap:wrap}
+    .hero-visual{position:relative;min-height:33rem;display:flex;align-items:flex-end;justify-content:center;opacity:0;transform:translateY(25px) scale(.97);transition:1s cubic-bezier(.16,1,.3,1)}
+    .hero-visual.ready{opacity:1;transform:none}
+    .portrait-stage{position:relative;width:min(100%,34rem);height:34rem;display:flex;align-items:flex-end;justify-content:center}
+    .portrait-stage::before{content:"";position:absolute;inset:8% 8% 0;border-radius:48% 48% 7% 7%;background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(255,255,255,.24));box-shadow:0 30px 70px rgba(0,0,0,.08),inset 0 0 0 1px rgba(255,255,255,.42)}
+    .hero-person{position:relative;z-index:2;width:93%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 28px 24px rgba(0,0,0,.15))}
+    .floating-card{position:absolute;z-index:5;left:0;bottom:1.1rem;width:min(19rem,76%);padding:.55rem;border-radius:1.25rem;background:rgba(255,255,255,.72);box-shadow:0 18px 50px rgba(0,0,0,.12),inset 0 0 0 1px rgba(255,255,255,.78);backdrop-filter:blur(16px)}
+    .floating-inner{display:grid;grid-template-columns:4rem 1fr;gap:.55rem}
+    .floating-icon{border-radius:.9rem;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:1.1rem;font-weight:700}
+    .floating-text{min-height:4rem;border-radius:.9rem;background:rgba(244,242,239,.75);padding:.72rem .8rem;display:flex;flex-direction:column;justify-content:center}
+    .floating-kicker{font-size:.62rem;text-transform:uppercase;letter-spacing:.07em;color:rgba(17,17,17,.42);font-weight:650}
+    .floating-title{font-size:.86rem;font-weight:650;margin-top:.16rem;line-height:1.25}
+    .floating-dots{display:flex;gap:.25rem;margin-top:.55rem}.floating-dot{height:.24rem;width:.34rem;background:#c7c1bc;border-radius:999px;transition:.3s}.floating-dot.active{width:.95rem;background:var(--accent)}
+    .hero-organizations{position:absolute;right:0;top:2.5rem;z-index:6;display:none;flex-direction:column;align-items:flex-end;gap:.48rem}
+    .hero-organizations .label{font-size:.68rem;color:rgba(17,17,17,.45);font-weight:600;margin-bottom:.2rem}
+    .org-chip{display:inline-flex;padding:.5rem .72rem;border-radius:999px;background:rgba(255,255,255,.55);backdrop-filter:blur(9px);border:1px solid rgba(255,255,255,.5);font-size:.72rem;font-weight:600;color:rgba(17,17,17,.65)}
+    .hero-status{position:relative;z-index:4;border-top:1px solid rgba(17,17,17,.12)}
+    .status-inner{display:flex;justify-content:space-between;gap:1rem;padding:1.15rem 0;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:rgba(17,17,17,.52);font-weight:650}
+    .status-inner span:nth-child(2){display:none}
+    @media(min-width:960px){
+      .hero-grid{grid-template-columns:1.15fr .85fr;gap:2.5rem;padding-top:8.5rem}
+      .hero-visual{min-height:42rem}.portrait-stage{height:42rem;width:36rem}.hero-organizations{display:flex}.status-inner span:nth-child(2){display:block}
+    }
+
+    /* About */
+    .about{padding:7rem 0 4rem}
+    .about-grid{display:grid;grid-template-columns:1fr;gap:3.5rem;align-items:start}
+    .about-side{position:relative;min-height:18rem}
+    .about-orbit{position:absolute;left:-2rem;top:-1rem;width:16rem;height:16rem;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:rgba(17,17,17,.12);font-size:7rem;font-weight:700;letter-spacing:-.08em}
+    .about-orbit::before,.about-orbit::after{content:"";position:absolute;border:1px solid var(--line);border-radius:50%}.about-orbit::before{inset:2.5rem}.about-orbit::after{inset:5rem}
+    .about-side .eyebrow{position:relative;z-index:2}
+    .about-note{position:absolute;bottom:0;left:0;max-width:16rem;font-size:.87rem;line-height:1.55;color:var(--muted)}
+    .about-main{display:flex;flex-direction:column;gap:2rem}
+    .about-statement{font-size:clamp(1.55rem,3vw,2.7rem);line-height:1.25;letter-spacing:-.03em;font-weight:500}
+    .about-statement .muted{color:#9b9793}
+    .skills-strip{display:flex;flex-wrap:wrap;gap:.55rem;padding-top:1.5rem;border-top:1px solid var(--line)}
+    .skill-chip{padding:.6rem .85rem;border-radius:999px;background:var(--surface);font-size:.78rem;font-weight:600;color:#5f5a56}
+    @media(min-width:960px){.about-grid{grid-template-columns:.8fr 1.2fr}.about{padding:8.5rem 0 5rem}.about-side{min-height:22rem}.about-orbit{width:20rem;height:20rem;font-size:9rem}}
+
+    /* Band */
+    .band{padding:2rem 0 6rem}
+    .band-row{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+    .band-pill{min-height:6.2rem;border-radius:999px;display:grid;place-items:center;font-size:clamp(1.3rem,3vw,2.2rem);font-weight:600;letter-spacing:-.03em;transition:.3s}
+    .band-pill:hover{transform:scale(1.018)}
+    .band-pill:nth-child(1){background:var(--surface)}.band-pill:nth-child(2){background:linear-gradient(135deg,var(--accent-2),var(--accent));color:#fff}.band-pill:nth-child(3){background:var(--ink);color:#fff}.band-pill:nth-child(4){background:#ece9e5;color:#88827d}
+    @media(min-width:760px){.band-row{grid-template-columns:repeat(4,1fr);gap:1rem}.band-pill{min-height:9rem}}
+
+    /* Experience */
+    .experience{padding:5.5rem 0 8rem}
+    .section-head{display:flex;flex-direction:column;gap:1.2rem;margin-bottom:3.4rem}
+    .experience-grid{display:grid;grid-template-columns:1fr;gap:1.25rem}
+    .exp-card{position:relative;overflow:hidden;border-radius:var(--radius);min-height:34rem;background:var(--surface);border:1px solid rgba(0,0,0,.03)}
+    .exp-card.photo{color:#fff}
+    .exp-card.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.02) 20%,rgba(0,0,0,.86) 100%);z-index:1}
+    .exp-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .exp-content{position:absolute;z-index:3;inset:auto 1.5rem 1.5rem;display:flex;flex-direction:column;gap:.75rem}
+    .exp-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.58);font-weight:650}
+    .exp-card h3{font-size:2rem;line-height:1;letter-spacing:-.04em;font-weight:600}
+    .exp-card p{font-size:.9rem;line-height:1.55;color:rgba(255,255,255,.67);max-width:34rem}
+    .exp-tags{display:flex;gap:.45rem;flex-wrap:wrap}.exp-tags span{padding:.48rem .72rem;border:1px solid rgba(255,255,255,.24);border-radius:999px;font-size:.72rem;font-weight:600}
+    .exp-card.mnc{padding:1.5rem;display:flex;flex-direction:column;justify-content:space-between;gap:2rem;background:#111;color:#fff}
+    .mnc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+    .verified{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .68rem;border-radius:999px;background:rgba(255,255,255,.08);font-size:.68rem;font-weight:650;color:rgba(255,255,255,.7)}
+    .verified::before{content:"✓";color:#ff9cad}
+    .mnc-preview{width:62%;margin-left:auto;border-radius:1rem;overflow:hidden;transform:rotate(3deg);box-shadow:0 20px 45px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1)}
+    .mnc-preview img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top}
+    .mnc-bottom{display:flex;flex-direction:column;gap:.75rem}
+    .mnc-bottom p{color:rgba(255,255,255,.6)}
+    .credential-btn{display:inline-flex;align-items:center;gap:.55rem;font-size:.78rem;font-weight:650;color:#fff;opacity:.8;transition:.2s;width:fit-content}.credential-btn:hover{opacity:1;transform:translateX(3px)}
+    @media(min-width:900px){.experience-grid{grid-template-columns:1.1fr .9fr}.exp-card{min-height:40rem}.exp-content{inset:auto 2rem 2rem}.exp-card.mnc{padding:2rem}}
+
+    /* Organization */
+    .org-section{padding:7rem 0;background:#fbfaf9}
+    .org-list{margin-top:3rem;border-top:1px solid var(--line)}
+    .org-row{display:grid;grid-template-columns:3rem 1fr auto;gap:1rem;align-items:center;padding:1.4rem .2rem;border-bottom:1px solid var(--line);transition:.25s}
+    .org-row:hover{padding-left:.7rem;background:#fff}
+    .org-num{font-size:.72rem;color:#aaa39d;font-weight:650}
+    .org-main h3{font-size:clamp(1.15rem,2vw,1.6rem);font-weight:600;letter-spacing:-.025em}.org-main p{font-size:.82rem;color:var(--muted);margin-top:.25rem;line-height:1.45}
+    .org-action{width:2.6rem;height:2.6rem;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:.9rem;transition:.25s}.org-row:hover .org-action{transform:translateX(4px)}
+
+    /* Certifications */
+    .cert-section{padding:7rem 0 8rem}
+    .cert-toolbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:2.4rem 0 2rem}
+    .filters{display:flex;gap:.45rem;flex-wrap:wrap}.filter-btn{padding:.55rem .8rem;border-radius:999px;background:var(--surface);font-size:.72rem;font-weight:650;color:#6e6863;transition:.2s}.filter-btn.active{background:var(--ink);color:#fff}
+    .cert-count{font-size:.75rem;color:var(--muted);font-weight:600}
+    .cert-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+    .cert-card{position:relative;overflow:hidden;min-height:20rem;border-radius:1.6rem;background:#eee;border:1px solid var(--line);transition:.35s cubic-bezier(.2,.8,.2,1);cursor:pointer}
+    .cert-card:hover{transform:translateY(-7px)}
+    .cert-card.hidden{display:none}
+    .cert-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.85);transition:.5s}.cert-card:hover .cert-bg{transform:scale(1.035);filter:saturate(1)}
+    .cert-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 28%,rgba(0,0,0,.8) 100%)}
+    .cert-info{position:absolute;z-index:2;inset:auto 1.15rem 1.15rem;color:#fff}.cert-info .provider{font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.58);font-weight:650}.cert-info h3{font-size:1.15rem;line-height:1.2;margin-top:.32rem;font-weight:600}.cert-info .date{font-size:.72rem;color:rgba(255,255,255,.58);margin-top:.6rem}.cert-open{position:absolute;z-index:3;right:1rem;top:1rem;width:2.4rem;height:2.4rem;border-radius:50%;background:rgba(255,255,255,.88);color:var(--ink);display:grid;place-items:center;font-size:.9rem}
+    @media(min-width:680px){.cert-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1060px){.cert-grid{grid-template-columns:repeat(3,1fr)}.cert-card{min-height:23rem}}
+
+    /* Credentials */
+    .vault{padding:0 0 8rem}
+    .vault-panel{background:var(--ink);color:#fff;border-radius:var(--radius);padding:2rem 1.3rem}
+    .vault-head{display:flex;flex-direction:column;gap:1rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.1)}
+    .vault-head .section-copy{color:rgba(255,255,255,.52)}
+    .vault-grid{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:1.4rem}
+    .vault-group{border-radius:1.25rem;background:rgba(255,255,255,.055);padding:1.1rem}
+    .vault-group h3{font-size:1rem;font-weight:600;margin-bottom:.85rem}.vault-group p{font-size:.74rem;color:rgba(255,255,255,.45);margin-bottom:1rem;line-height:1.5}
+    .doc-list{display:flex;flex-direction:column;gap:.5rem}.doc-link{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.72rem .8rem;border-radius:.8rem;background:rgba(255,255,255,.06);font-size:.72rem;color:rgba(255,255,255,.72);transition:.2s}.doc-link:hover{background:rgba(255,255,255,.1);color:#fff}.doc-link span:last-child{opacity:.5}
+    @media(min-width:820px){.vault-panel{padding:3.5rem}.vault-head{flex-direction:row;justify-content:space-between;align-items:flex-end}.vault-head .section-copy{max-width:28rem}.vault-grid{grid-template-columns:repeat(3,1fr)}}
+
+    /* Footer */
+    .footer{background:var(--ink);color:#fff;border-radius:var(--radius) var(--radius) 0 0;overflow:hidden;position:relative}
+    .footer::after{content:"RIDHO";position:absolute;left:0;right:0;bottom:-2.5rem;text-align:center;font-size:clamp(6rem,18vw,15rem);font-weight:700;letter-spacing:-.07em;color:rgba(255,255,255,.035);line-height:.8;pointer-events:none}
+    .footer-inner{position:relative;z-index:2;padding:6rem 0 2.2rem}
+    .footer-cta{display:flex;flex-direction:column;gap:1.5rem;padding-bottom:4rem;border-bottom:1px solid rgba(255,255,255,.1)}
+    .footer-cta h2{font-size:clamp(2.7rem,6vw,5.3rem);line-height:.95;letter-spacing:-.05em;font-weight:600;max-width:13ch}
+    .footer-grid{display:grid;grid-template-columns:1fr;gap:2rem;padding:3rem 0}
+    .footer-brand p{max-width:23rem;font-size:.82rem;line-height:1.6;color:rgba(255,255,255,.5);margin-top:1rem}
+    .footer-col h4{font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.32);margin-bottom:.9rem}.footer-col a,.footer-col button{display:block;width:fit-content;font-size:.82rem;color:rgba(255,255,255,.68);margin:.55rem 0;transition:.2s}.footer-col a:hover,.footer-col button:hover{color:#fff;transform:translateX(3px)}
+    .legal{display:flex;flex-direction:column;gap:.7rem;justify-content:space-between;padding-top:1.8rem;border-top:1px solid rgba(255,255,255,.1);font-size:.68rem;color:rgba(255,255,255,.35)}
+    @media(min-width:800px){.footer-cta{flex-direction:row;align-items:flex-end;justify-content:space-between}.footer-grid{grid-template-columns:2fr 1fr 1fr}.legal{flex-direction:row}}
+
+    /* Overlay menu */
+    .menu-overlay{position:fixed;inset:0;z-index:200;background:var(--ink);color:#fff;display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:.35s}
+    .menu-overlay.open{opacity:1;visibility:visible}
+    .menu-top{display:flex;justify-content:space-between;align-items:center;padding:1.3rem 1.25rem}.menu-close{padding:.55rem .8rem;border:1px solid rgba(255,255,255,.16);border-radius:.8rem;font-size:.72rem;color:rgba(255,255,255,.75)}
+    .menu-main{flex:1;display:flex;align-items:center}.menu-main ul{width:100%}.menu-link{display:flex;gap:1rem;align-items:flex-start;padding:.4rem 1.25rem;font-size:clamp(2.3rem,8vw,5.2rem);font-weight:600;letter-spacing:-.05em;color:rgba(255,255,255,.68);transition:.25s}.menu-link:hover{color:#fff;transform:translateX(6px)}.menu-link small{font-size:.7rem;color:var(--accent-2);padding-top:.65rem;letter-spacing:0}
+    .menu-bottom{display:flex;justify-content:space-between;gap:1rem;padding:1.2rem 1.25rem;border-top:1px solid rgba(255,255,255,.1);font-size:.7rem;color:rgba(255,255,255,.4)}
+
+    /* Credential modal */
+    .modal{position:fixed;inset:0;z-index:250;background:rgba(0,0,0,.65);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;visibility:hidden;transition:.3s}
+    .modal.open{opacity:1;visibility:visible}.modal-panel{width:min(72rem,100%);height:min(88vh,52rem);background:#fff;border-radius:1.5rem;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 35px 100px rgba(0,0,0,.35);transform:translateY(18px);transition:.35s cubic-bezier(.16,1,.3,1)}.modal.open .modal-panel{transform:none}
+    .modal-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 1rem;border-bottom:1px solid var(--line)}.modal-title{font-size:.85rem;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.modal-actions{display:flex;align-items:center;gap:.4rem}.modal-actions a,.modal-actions button{padding:.5rem .68rem;border-radius:.7rem;background:var(--surface);font-size:.7rem;font-weight:650}.modal-body{flex:1;background:#e9e7e4;display:grid;place-items:center;overflow:hidden}.modal-body iframe{width:100%;height:100%;border:0;background:#fff}.modal-body img{width:100%;height:100%;object-fit:contain;padding:1rem}
+
+    /* Reveals */
+    .reveal{opacity:0;transform:translateY(28px);transition:.75s cubic-bezier(.16,1,.3,1)}.reveal.in{opacity:1;transform:none}
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <div id="loader" aria-hidden="true">
+    <div class="loader-box">
+      <div class="loader-brand"><div class="rp-mark">RP</div><span>Ridho Pratama</span></div>
+      <p class="loader-tag">Communication, content, and customer experience.</p>
+      <div class="loader-track"><div class="loader-fill" id="loader-fill"></div></div>
+      <div class="loader-meta"><span>Portfolio loading</span><span id="loader-count">000</span></div>
+    </div>
+  </div>
+
+  <header class="header" id="header">
+    <div class="shell header-inner">
+      <a href="#home" class="brand"><div class="rp-mark">RP</div><span>Ridho Pratama</span></a>
+      <nav class="nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#involvement">Involvement</a></li>
+          <li><a href="#certifications">Certifications</a></li>
+          <li><button data-contact>Contact</button></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <div class="location-chip">Bintaro · Tangerang Selatan</div>
+        <button class="menu-btn" id="open-menu">Menu</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-noise"></div>
+      <div class="hero-watermark" id="hero-watermark">RIDHO</div>
+      <div class="shell hero-grid">
+        <div class="hero-copy" id="hero-copy">
+          <div class="eyebrow">Communication Graduate · S.I.Kom.</div>
+          <h1>Ideas into <span class="soft">clear communication.</span></h1>
+          <p class="hero-desc">Ridho Pratama adalah lulusan Ilmu Komunikasi dengan fokus Broadcasting &amp; Journalistic, membangun pengalaman di media production, sales, digital content, dan kegiatan sosial-organisasi.</p>
+          <div class="hero-meta"><span>Production</span><span>Sales</span><span>Digital Marketing</span><span>Customer Experience</span></div>
+          <div class="hero-ctas">
+            <a href="#experience" class="pill dark">View Experience <span class="arrow">→</span></a>
+            <a href="assets/docs/Ridho-Pratama-CV.pdf" download class="pill outline">Download CV <span class="arrow">↓</span></a>
+          </div>
+        </div>
+
+        <div class="hero-visual" id="hero-visual">
+          <div class="portrait-stage">
+            <img src="assets/images/ridho-hero.png" alt="Ridho Pratama in a formal suit" class="hero-person" />
+            <div class="floating-card" id="floating-card">
+              <div class="floating-inner">
+                <div class="floating-icon">RP</div>
+                <div class="floating-text">
+                  <div class="floating-kicker" id="float-kicker">Media Production</div>
+                  <div class="floating-title" id="float-title">Production Assistant · MNC Channels</div>
+                  <div class="floating-dots" id="float-dots"></div>
+                </div>
+              </div>
+            </div>
+            <div class="hero-organizations">
+              <div class="label">Experience &amp; learning across</div>
+              <span class="org-chip">MNC Channels</span>
+              <span class="org-chip">Chery</span>
+              <span class="org-chip">Universitas Pembangunan Jaya</span>
+              <span class="org-chip">Coursera</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-status">
+        <div class="shell status-inner"><span>Communication · Content · Customer Experience</span><span>Broadcasting &amp; Journalistic</span><span>Scroll to explore ↓</span></div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="shell about-grid">
+        <div class="about-side reveal">
+          <div class="about-orbit">RP</div>
+          <div class="eyebrow">About Ridho</div>
+          <p class="about-note">Menggabungkan komunikasi kreatif dengan pengalaman langsung menghadapi audiens, customer, tim produksi, dan komunitas.</p>
+        </div>
+        <div class="about-main reveal">
+          <p class="about-statement">Saya tertarik pada pekerjaan yang mempertemukan <strong>komunikasi, kreativitas, dan manusia.</strong> <span class="muted">Pengalaman saya bergerak dari proses produksi media, pelayanan pelanggan, event, sampai pembelajaran digital marketing dan AI content.</span></p>
+          <div class="skills-strip">
+            <span class="skill-chip">Communication</span><span class="skill-chip">Customer Service</span><span class="skill-chip">Teamwork</span><span class="skill-chip">Time Management</span><span class="skill-chip">Instagram</span><span class="skill-chip">TikTok</span><span class="skill-chip">Canva</span><span class="skill-chip">CapCut</span><span class="skill-chip">Microsoft Tools</span><span class="skill-chip">Google Drive · Gmail · Zoom</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;padding-top:.25rem;color:var(--muted);font-size:.82rem;font-weight:600"><span>Universitas Pembangunan Jaya</span><span style="opacity:.35">•</span><span>Ilmu Komunikasi · 2021–2026</span><span style="opacity:.35">•</span><span>Broadcasting &amp; Journalistic</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="shell band-row">
+        <div class="band-pill reveal">Think</div><div class="band-pill reveal">Create</div><div class="band-pill reveal">Connect</div><div class="band-pill reveal">Deliver</div>
+      </div>
+    </section>
+
+    <section class="experience" id="experience">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="eyebrow">Professional Experience</div>
+          <h2 class="section-title">Built through real work.</h2>
+          <p class="section-copy">Dua pengalaman lapangan yang membentuk cara Ridho bekerja: memahami kebutuhan orang, menjaga komunikasi, dan memastikan proses berjalan rapi sampai selesai.</p>
+        </div>
+        <div class="experience-grid">
+          <article class="exp-card photo reveal">
+            <img src="assets/images/chery-sales.jpg" class="exp-photo" alt="Ridho Pratama during his work as a Chery sales consultant" />
+            <div class="exp-content">
+              <div class="exp-top"><span>Sales Consultant · Chery</span><span>11 Jun — 5 Sep</span></div>
+              <h3>Customer-facing sales experience.</h3>
+              <p>Mencapai target penjualan bulanan, menjelaskan produk, melayani konsultasi dan test drive, melakukan follow-up, serta menjaga hubungan baik dengan pelanggan dan tim sales.</p>
+              <div class="exp-tags"><span>Sales</span><span>Customer Service</span><span>Product Knowledge</span><span>Follow-up</span></div>
+            </div>
+          </article>
+
+          <article class="exp-card mnc reveal">
+            <div class="mnc-top">
+              <div><div class="eyebrow light">Media Internship</div><h3 style="margin-top:1rem">Production Assistant<br/>MNC Channels</h3></div>
+              <span class="verified">Official letter available</span>
+            </div>
+            <button class="mnc-preview" data-doc="assets/images/mnc-letter.png" data-type="image" data-title="MNC Channels — Internship Letter">
+              <img src="assets/images/mnc-letter.png" alt="MNC Channels official internship letter" />
+            </button>
+            <div class="mnc-bottom">
+              <div class="exp-top"><span>Okezone TV Department</span><span>08 Jul — 08 Oct 2024</span></div>
+              <p>Menangani kebutuhan pra-produksi, koordinasi set dan kru saat produksi, pengelolaan file pasca-produksi, mendampingi proses editing, serta membantu pembuatan teaser dan konten YouTube.</p>
+              <button class="credential-btn" data-doc="assets/images/mnc-letter.png" data-type="image" data-title="MNC Channels — Internship Letter">View official internship letter ↗</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="org-section" id="involvement">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="eyebrow">Organization &amp; Community</div>
+          <h2 class="section-title">More than a line on a CV.</h2>
+          <p class="section-copy">Pengalaman organisasi Ridho didukung oleh SK, surat tugas, dan sertifikat kegiatan yang bisa dibuka langsung sebagai bukti pendukung.</p>
+        </div>
+        <div class="org-list reveal">
+          <button class="org-row" data-doc="assets/docs/cofest-2023-sk.pdf" data-type="pdf" data-title="CoFest 2023 — Official Committee Decree">
+            <span class="org-num">01</span><div class="org-main"><h3>CoFest 2023 · Sponsorship &amp; Dana Usaha</h3><p>Pengajuan kerja sama sponsor, fundraising, ide penjualan, serta dokumentasi aktivitas kerja sama.</p></div><span class="org-action">↗</span>
+          </button>
+          <button class="org-row" data-doc="assets/docs/creature-comedy-show.pdf" data-type="pdf" data-title="CREATURE 2024 — Committee Certificate">
+            <span class="org-num">02</span><div class="org-main"><h3>CREATURE 2024 · Event Organizer / Committee</h3><p>Terlibat dalam konsep acara, narasumber, rundown, naskah MC, venue, audience research, dan rangkaian program CREATURE 2024.</p></div><span class="org-action">↗</span>
+          </button>
+          <button class="org-row" data-doc="assets/docs/daka-membangun-desa-2024.pdf" data-type="pdf" data-title="DAKAURI Membangun Desa 2024 — Assignment Letter">
+            <span class="org-num">03</span><div class="org-main"><h3>DAKAURI · Kewirausahaan, Pembangunan &amp; Mengajar</h3><p>Pengabdian masyarakat, kegiatan kewirausahaan, pembangunan desa, komunikasi langsung, dan dukungan dokumentasi.</p></div><span class="org-action">↗</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="cert-section" id="certifications">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="eyebrow">Certifications &amp; Continuous Learning</div>
+          <h2 class="section-title">Learning that supports the work.</h2>
+          <p class="section-copy">Sebelas course certificate dari Coursera dengan issuer seperti Adobe, Digital Marketing Institute, Unilever, University of Michigan, dan Universitas Pembangunan Jaya.</p>
+        </div>
+        <div class="cert-toolbar reveal">
+          <div class="filters"><button class="filter-btn active" data-filter="all">All</button><button class="filter-btn" data-filter="marketing">Marketing</button><button class="filter-btn" data-filter="content">Content</button><button class="filter-btn" data-filter="tech">AI &amp; Tech</button><button class="filter-btn" data-filter="culture">Brand &amp; Culture</button></div>
+          <div class="cert-count"><span id="cert-visible">11</span> credentials shown</div>
+        </div>
+        <div class="cert-grid" id="cert-grid"></div>
+      </div>
+    </section>
+
+    <section class="vault" id="credentials">
+      <div class="shell vault-panel reveal">
+        <div class="vault-head">
+          <div><div class="eyebrow light">Credential Vault</div><h2 class="section-title" style="margin-top:1rem">Proof behind the experience.</h2></div>
+          <p class="section-copy">Dokumen pendukung disimpan sebagai bagian dari portfolio: surat magang, SK kepanitiaan, surat tugas kegiatan, dan sertifikat partisipasi.</p>
+        </div>
+        <div class="vault-grid">
+          <div class="vault-group"><h3>CREATURE 2024</h3><p>Empat sertifikat kepanitiaan pada rangkaian kegiatan CREATURE.</p><div class="doc-list">
+            <button class="doc-link" data-doc="assets/docs/creature-comedy-show.pdf" data-type="pdf" data-title="CREATURE — Comedy Show"><span>Creature Comedy Show</span><span>↗</span></button>
+            <button class="doc-link" data-doc="assets/docs/creature-chillin.pdf" data-type="pdf" data-title="CREATURE — Chillin' Paint Your Feeling"><span>Chillin' · Paint Your Feeling</span><span>↗</span></button>
+            <button class="doc-link" data-doc="assets/docs/creature-music-industry.pdf" data-type="pdf" data-title="CREATURE — Exploring Creativity in the Music Industry"><span>Music Industry Seminar</span><span>↗</span></button>
+            <button class="doc-link" data-doc="assets/docs/creature-grenade.pdf" data-type="pdf" data-title="CREATURE — GRENADE Closing"><span>GRENADE Closing Ceremony</span><span>↗</span></button>
+          </div></div>
+          <div class="vault-group"><h3>DAKAURI</h3><p>Surat tugas pengabdian, capacity building, dan kegiatan sosial 2023–2024.</p><div class="doc-list">
+            <button class="doc-link" data-doc="assets/docs/daka-mengajar-2024.pdf" data-type="pdf" data-title="DAKAURI Mengajar 2024"><span>DAKAURI Mengajar 2024</span><span>↗</span></button>
+            <button class="doc-link" data-doc="assets/docs/daka-sosial-2024.pdf" data-type="pdf" data-title="DAKAURI Sosial 2024"><span>DAKAURI Sosial 2024</span><span>↗</span></button>
+            <button class="doc-link" data-doc="assets/docs/daka-funday-2024.pdf" data-type="pdf" data-title="DAKAURI Fun Day 2024"><span>DAKAURI Fun Day 2024</span><span>↗</span></button>
+            <button class="doc-link" data-doc="assets/docs/daka-orientation-2023.pdf" data-type="pdf" data-title="DAKAURI Orientation Day 2023"><span>Orientation Day 2023</span><span>↗</span></button>
+            <button class="doc-link" data-doc="assets/docs/daka-tancap-dec-2023.pdf" data-type="pdf" data-title="DAKAURI Tanggap Cepat — 14 Dec 2023"><span>Tanggap Cepat · 14 Dec 2023</span><span>↗</span></button>
+            <button class="doc-link" data-doc="assets/docs/daka-tancap-may-2023.pdf" data-type="pdf" data-title="DAKAURI Tanggap Cepat — 31 May 2023"><span>Tanggap Cepat · 31 May 2023</span><span>↗</span></button>
+            <button class="doc-link" data-doc="assets/docs/daka-membangun-desa-2024.pdf" data-type="pdf" data-title="DAKAURI Membangun Desa 2024"><span>Membangun Desa 2024</span><span>↗</span></button>
+          </div></div>
+          <div class="vault-group"><h3>Professional &amp; Campus</h3><p>Dokumen utama yang memvalidasi pengalaman media dan organisasi kampus.</p><div class="doc-list">
+            <button class="doc-link" data-doc="assets/images/mnc-letter.png" data-type="image" data-title="MNC Channels — Internship Letter"><span>MNC Internship Letter</span><span>↗</span></button>
+            <button class="doc-link" data-doc="assets/docs/cofest-2023-sk.pdf" data-type="pdf" data-title="CoFest 2023 — Official Committee Decree"><span>CoFest 2023 Official SK</span><span>↗</span></button>
+            <a class="doc-link" href="assets/docs/Ridho-Pratama-CV.pdf" download><span>Latest CV</span><span>↓</span></a>
+          </div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="shell footer-inner">
+      <div class="footer-cta"><h2>Let’s build something worth communicating.</h2><button class="pill light" data-contact>Contact Ridho <span class="arrow">↗</span></button></div>
+      <div class="footer-grid">
+        <div class="footer-brand"><div class="brand"><div class="rp-mark">RP</div><span>Ridho Pratama</span></div><p>Communication graduate focused on media production, digital content, sales, customer experience, and continuous learning.</p></div>
+        <div class="footer-col"><h4>Navigate</h4><a href="#experience">Experience</a><a href="#involvement">Involvement</a><a href="#certifications">Certifications</a><a href="#credentials">Credentials</a></div>
+        <div class="footer-col"><h4>Contact</h4><a href="mailto:pratamaxridho24@gmail.com">pratamaxridho24@gmail.com</a><a href="tel:+6285286337673">+62 852-8633-7673</a><span style="display:block;font-size:.82rem;color:rgba(255,255,255,.55);margin-top:.55rem">Bintaro, Tangerang Selatan</span></div>
+      </div>
+      <div class="legal"><span>© 2026 Ridho Pratama. Portfolio.</span><span>Designed from a Lumora-inspired visual direction.</span></div>
+    </div>
+  </footer>
+
+  <div class="menu-overlay" id="menu-overlay" aria-hidden="true">
+    <div class="menu-top"><div class="brand"><div class="rp-mark">RP</div><span>Ridho Pratama</span></div><button class="menu-close" id="close-menu">✕ Close</button></div>
+    <div class="menu-main"><ul>
+      <li><a class="menu-link" href="#home"><small>01</small>Home</a></li><li><a class="menu-link" href="#experience"><small>02</small>Experience</a></li><li><a class="menu-link" href="#involvement"><small>03</small>Involvement</a></li><li><a class="menu-link" href="#certifications"><small>04</small>Certifications</a></li><li><a class="menu-link" href="#credentials"><small>05</small>Credentials</a></li><li><button class="menu-link" data-contact><small>06</small>Contact</button></li>
+    </ul></div>
+    <div class="menu-bottom"><span>Communication · Content · Customer Experience</span><span>Bintaro, Tangerang Selatan</span></div>
+  </div>
+
+  <div class="modal" id="doc-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-panel" id="modal-panel">
+      <div class="modal-head"><div class="modal-title" id="modal-title">Credential</div><div class="modal-actions"><a id="modal-open" href="#" target="_blank" rel="noopener">Open original ↗</a><button id="modal-close">✕</button></div></div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <div class="modal" id="contact-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-panel" style="max-width:34rem;height:auto">
+      <div class="modal-head"><div class="modal-title">Contact Ridho Pratama</div><div class="modal-actions"><button id="contact-close">✕</button></div></div>
+      <div style="padding:1.4rem;display:flex;flex-direction:column;gap:.8rem">
+        <a class="doc-link" style="background:var(--surface);color:var(--ink);font-size:.82rem" href="mailto:pratamaxridho24@gmail.com"><span>Email · pratamaxridho24@gmail.com</span><span>↗</span></a>
+        <a class="doc-link" style="background:var(--surface);color:var(--ink);font-size:.82rem" href="tel:+6285286337673"><span>Phone · +62 852-8633-7673</span><span>↗</span></a>
+        <a class="doc-link" style="background:var(--ink);color:#fff;font-size:.82rem" href="assets/docs/Ridho-Pratama-CV.pdf" download><span>Download CV</span><span>↓</span></a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const certificates = [
+      {title:'Social Media and Digital Marketing Fundamentals',provider:'Digital Marketing Institute · Coursera',date:'16 Dec 2025',cat:'marketing',img:'assets/images/cert-1.jpg',doc:'assets/certs/coursera-1.pdf'},
+      {title:'Multichannel Content Marketing',provider:'Adobe · Coursera',date:'15 Dec 2025',cat:'content',img:'assets/images/cert-2.jpg',doc:'assets/certs/coursera-2.pdf'},
+      {title:'Generative AI Content Creation',provider:'Adobe · Coursera',date:'15 Dec 2025',cat:'tech',img:'assets/images/cert-3.jpg',doc:'assets/certs/coursera-3.pdf'},
+      {title:'Social Media Content and Strategy',provider:'Adobe · Coursera',date:'15 Dec 2025',cat:'content',img:'assets/images/cert-4.jpg',doc:'assets/certs/coursera-4.pdf'},
+      {title:'Digital Marketing',provider:'Adobe · Coursera',date:'14 Dec 2025',cat:'marketing',img:'assets/images/cert-5.jpg',doc:'assets/certs/coursera-5.pdf'},
+      {title:'Branding Produk',provider:'Universitas Pembangunan Jaya · Coursera',date:'14 Dec 2025',cat:'culture',img:'assets/images/cert-6.jpg',doc:'assets/certs/coursera-6.pdf'},
+      {title:'Creative Urban Culture',provider:'Universitas Pembangunan Jaya · Coursera',date:'11 Dec 2025',cat:'culture',img:'assets/images/cert-7.jpg',doc:'assets/certs/coursera-7.pdf'},
+      {title:'Blockchain and Cryptocurrency Explained',provider:'University of Michigan · Coursera',date:'11 Dec 2025',cat:'tech',img:'assets/images/cert-8.jpg',doc:'assets/certs/coursera-8.pdf'},
+      {title:'Advanced Tools for Digital Marketing Analytics',provider:'Unilever · Coursera',date:'09 Dec 2025',cat:'marketing',img:'assets/images/cert-9.jpg',doc:'assets/certs/coursera-9.pdf'},
+      {title:'Innovations in Investment Technology: Artificial Intelligence',provider:'University of Michigan · Coursera',date:'09 Dec 2025',cat:'tech',img:'assets/images/cert-10.jpg',doc:'assets/certs/coursera-10.pdf'},
+      {title:'Raising Capital: Credit Tech, Coin Offerings, and Crowdfunding',provider:'University of Michigan · Coursera',date:'09 Dec 2025',cat:'tech',img:'assets/images/cert-11.jpg',doc:'assets/certs/coursera-11.pdf'}
+    ];
+
+    const grid = document.getElementById('cert-grid');
+    grid.innerHTML = certificates.map((c,i)=>`<button class="cert-card reveal" data-category="${c.cat}" data-doc="${c.doc}" data-type="pdf" data-title="${c.title.replaceAll('"','&quot;')}"><img class="cert-bg" src="${c.img}" alt="${c.title}"><span class="cert-open">↗</span><span class="cert-info"><span class="provider">${c.provider}</span><h3>${c.title}</h3><span class="date">${c.date}</span></span></button>`).join('');
+
+    // Loader + hero reveal
+    const loader=document.getElementById('loader'),fill=document.getElementById('loader-fill'),count=document.getElementById('loader-count');
+    const start=performance.now(),duration=1150;
+    function loadTick(now){const p=Math.min((now-start)/duration,1),e=1-Math.pow(1-p,3),v=Math.round(e*100);fill.style.width=v+'%';count.textContent=String(v).padStart(3,'0');if(p<1)requestAnimationFrame(loadTick);else setTimeout(()=>{loader.classList.add('exit');setTimeout(()=>{loader.remove();document.getElementById('header').classList.add('ready');document.getElementById('hero-watermark').classList.add('ready');document.getElementById('hero-copy').classList.add('ready');document.getElementById('hero-visual').classList.add('ready')},600)},90)}
+    requestAnimationFrame(loadTick);
+
+    // Highlight card rotation
+    const highlights=[
+      ['Media Production','Production Assistant · MNC Channels'],
+      ['Customer Experience','Sales Consultant · Chery'],
+      ['Continuous Learning','11 Coursera course certificates']
+    ];
+    let hi=0; const fk=document.getElementById('float-kicker'),ft=document.getElementById('float-title'),fd=document.getElementById('float-dots');
+    function drawHighlight(){fk.textContent=highlights[hi][0];ft.textContent=highlights[hi][1];fd.innerHTML=highlights.map((_,i)=>`<span class="floating-dot ${i===hi?'active':''}"></span>`).join('')}
+    drawHighlight();setInterval(()=>{hi=(hi+1)%highlights.length;drawHighlight()},3200);
+
+    // Scroll reveals
+    const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.14});
+    document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=((i%4)*55)+'ms';io.observe(el)});
+
+    // Certification filters
+    document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>{
+      document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const f=btn.dataset.filter;let visible=0;
+      document.querySelectorAll('.cert-card').forEach(card=>{const show=f==='all'||card.dataset.category===f;card.classList.toggle('hidden',!show);if(show)visible++});document.getElementById('cert-visible').textContent=visible;
+    }));
+
+    // Menu
+    const menu=document.getElementById('menu-overlay');
+    const openMenu=()=>{menu.classList.add('open');menu.setAttribute('aria-hidden','false');document.body.classList.add('lock')};
+    const closeMenu=()=>{menu.classList.remove('open');menu.setAttribute('aria-hidden','true');document.body.classList.remove('lock')};
+    document.getElementById('open-menu').onclick=openMenu;document.getElementById('close-menu').onclick=closeMenu;
+    menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+
+    // Document modal
+    const docModal=document.getElementById('doc-modal'),modalBody=document.getElementById('modal-body'),modalTitle=document.getElementById('modal-title'),modalOpen=document.getElementById('modal-open');
+    function openDoc(el){const src=el.dataset.doc,type=el.dataset.type,title=el.dataset.title||'Credential';modalTitle.textContent=title;modalOpen.href=src;modalBody.innerHTML=type==='image'?`<img src="${src}" alt="${title}">`:`<iframe src="${src}#toolbar=1&navpanes=0" title="${title}"></iframe>`;docModal.classList.add('open');docModal.setAttribute('aria-hidden','false');document.body.classList.add('lock')}
+    function closeDoc(){docModal.classList.remove('open');docModal.setAttribute('aria-hidden','true');modalBody.innerHTML='';document.body.classList.remove('lock')}
+    document.addEventListener('click',e=>{const el=e.target.closest('[data-doc]');if(el){e.preventDefault();openDoc(el)}});
+    document.getElementById('modal-close').onclick=closeDoc;docModal.addEventListener('click',e=>{if(e.target===docModal)closeDoc()});document.getElementById('modal-panel').addEventListener('click',e=>e.stopPropagation());
+
+    // Contact modal
+    const contact=document.getElementById('contact-modal');function openContact(){closeMenu();contact.classList.add('open');contact.setAttribute('aria-hidden','false');document.body.classList.add('lock')}function closeContact(){contact.classList.remove('open');contact.setAttribute('aria-hidden','true');document.body.classList.remove('lock')}
+    document.querySelectorAll('[data-contact]').forEach(b=>b.addEventListener('click',openContact));document.getElementById('contact-close').onclick=closeContact;contact.addEventListener('click',e=>{if(e.target===contact)closeContact()});
+
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(docModal.classList.contains('open'))closeDoc();else if(contact.classList.contains('open'))closeContact();else if(menu.classList.contains('open'))closeMenu()}});
+  </script>
+</body>
+</html>
