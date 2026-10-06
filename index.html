@@ -35,7 +35,7 @@
     img{display:block;max-width:100%}
     ul{list-style:none}
     :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-    .shell{width:min(calc(100% - 2.5rem),var(--shell));margin-inline:auto}
+    .shell{width:min(calc(100% - clamp(1.25rem,4vw,2.5rem)),var(--shell));margin-inline:auto}
     .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-size:.82rem;font-weight:600;letter-spacing:.02em;color:rgba(17,17,17,.62)}
     .eyebrow::before{content:"";width:.4rem;height:.4rem;border-radius:50%;background:var(--accent)}
     .eyebrow.light{color:rgba(255,255,255,.68)}
@@ -88,34 +88,34 @@
     .hero-copy>*{opacity:0;transform:translateY(20px);transition:.8s cubic-bezier(.16,1,.3,1)}
     .hero-copy.ready>*{opacity:1;transform:none}
     .hero-copy.ready>*:nth-child(2){transition-delay:.09s}.hero-copy.ready>*:nth-child(3){transition-delay:.18s}.hero-copy.ready>*:nth-child(4){transition-delay:.27s}.hero-copy.ready>*:nth-child(5){transition-delay:.36s}
-    .hero h1{font-size:clamp(3.45rem,8.2vw,7.6rem);font-weight:650;line-height:.88;letter-spacing:-.06em;max-width:10.5ch}
+    .hero h1{font-size:clamp(2.8rem,8.2vw,7.6rem);font-weight:650;line-height:.9;letter-spacing:-.055em;max-width:10.5ch}
     .hero h1 .soft{color:rgba(17,17,17,.42)}
     .hero-desc{max-width:38rem;font-size:clamp(.96rem,1.4vw,1.15rem);line-height:1.65;color:rgba(17,17,17,.66)}
     .hero-meta{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;font-size:.78rem;font-weight:600;color:rgba(17,17,17,.62)}
     .hero-meta span{display:inline-flex;align-items:center;gap:.45rem}
     .hero-meta span::before{content:"";width:.35rem;height:.35rem;background:var(--accent);border-radius:50%}
     .hero-ctas{display:flex;gap:.7rem;flex-wrap:wrap}
-    .hero-visual{position:relative;min-height:33rem;display:flex;align-items:flex-end;justify-content:center;opacity:0;transform:translateY(25px) scale(.97);transition:1s cubic-bezier(.16,1,.3,1)}
+    .hero-visual{position:relative;min-height:33rem;width:100%;min-width:0;display:flex;align-items:flex-end;justify-content:center;opacity:0;transform:translateY(25px) scale(.97);transition:1s cubic-bezier(.16,1,.3,1)}
     .hero-visual.ready{opacity:1;transform:none}
-    .portrait-stage{position:relative;width:min(100%,34rem);height:34rem;display:flex;align-items:flex-end;justify-content:center}
+    .portrait-stage{position:relative;width:min(100%,34rem);max-width:100%;height:34rem;display:flex;align-items:flex-end;justify-content:center}
     .portrait-stage::before{content:"";position:absolute;inset:8% 8% 0;border-radius:48% 48% 7% 7%;background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(255,255,255,.24));box-shadow:0 30px 70px rgba(0,0,0,.08),inset 0 0 0 1px rgba(255,255,255,.42)}
     .hero-person{position:relative;z-index:2;width:93%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 28px 24px rgba(0,0,0,.15))}
-    .floating-card{position:absolute;z-index:5;left:0;bottom:1.1rem;width:min(19rem,76%);padding:.55rem;border-radius:1.25rem;background:rgba(255,255,255,.72);box-shadow:0 18px 50px rgba(0,0,0,.12),inset 0 0 0 1px rgba(255,255,255,.78);backdrop-filter:blur(16px)}
+    .floating-card{position:absolute;z-index:5;left:.4rem;bottom:1.1rem;width:min(19rem,calc(100% - .8rem));padding:.55rem;border-radius:1.25rem;background:rgba(255,255,255,.72);box-shadow:0 18px 50px rgba(0,0,0,.12),inset 0 0 0 1px rgba(255,255,255,.78);backdrop-filter:blur(16px)}
     .floating-inner{display:grid;grid-template-columns:4rem 1fr;gap:.55rem}
     .floating-icon{border-radius:.9rem;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:1.1rem;font-weight:700}
     .floating-text{min-height:4rem;border-radius:.9rem;background:rgba(244,242,239,.75);padding:.72rem .8rem;display:flex;flex-direction:column;justify-content:center}
     .floating-kicker{font-size:.62rem;text-transform:uppercase;letter-spacing:.07em;color:rgba(17,17,17,.42);font-weight:650}
     .floating-title{font-size:.86rem;font-weight:650;margin-top:.16rem;line-height:1.25}
     .floating-dots{display:flex;gap:.25rem;margin-top:.55rem}.floating-dot{height:.24rem;width:.34rem;background:#c7c1bc;border-radius:999px;transition:.3s}.floating-dot.active{width:.95rem;background:var(--accent)}
-    .hero-organizations{position:absolute;right:0;top:2.5rem;z-index:6;display:none;flex-direction:column;align-items:flex-end;gap:.48rem}
-    .hero-organizations .label{font-size:.68rem;color:rgba(17,17,17,.45);font-weight:600;margin-bottom:.2rem}
-    .org-chip{display:inline-flex;padding:.5rem .72rem;border-radius:999px;background:rgba(255,255,255,.55);backdrop-filter:blur(9px);border:1px solid rgba(255,255,255,.5);font-size:.72rem;font-weight:600;color:rgba(17,17,17,.65)}
     .hero-status{position:relative;z-index:4;border-top:1px solid rgba(17,17,17,.12)}
     .status-inner{display:flex;justify-content:space-between;gap:1rem;padding:1.15rem 0;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:rgba(17,17,17,.52);font-weight:650}
     .status-inner span:nth-child(2){display:none}
     @media(min-width:960px){
-      .hero-grid{grid-template-columns:1.15fr .85fr;gap:2.5rem;padding-top:8.5rem}
-      .hero-visual{min-height:42rem}.portrait-stage{height:42rem;width:36rem}.hero-organizations{display:flex}.status-inner span:nth-child(2){display:block}
+      .hero-grid{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:2.5rem;padding-top:8.5rem}
+      .hero-copy,.hero-visual{min-width:0}
+      .hero-visual{min-height:clamp(34rem,48vw,42rem)}
+      .portrait-stage{height:clamp(34rem,48vw,42rem);width:100%;max-width:36rem}
+      .status-inner span:nth-child(2){display:block}
     }
 
     /* About */
@@ -224,6 +224,74 @@
     .modal.open{opacity:1;visibility:visible}.modal-panel{width:min(72rem,100%);height:min(88vh,52rem);background:#fff;border-radius:1.5rem;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 35px 100px rgba(0,0,0,.35);transform:translateY(18px);transition:.35s cubic-bezier(.16,1,.3,1)}.modal.open .modal-panel{transform:none}
     .modal-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 1rem;border-bottom:1px solid var(--line)}.modal-title{font-size:.85rem;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.modal-actions{display:flex;align-items:center;gap:.4rem}.modal-actions a,.modal-actions button{padding:.5rem .68rem;border-radius:.7rem;background:var(--surface);font-size:.7rem;font-weight:650}.modal-body{flex:1;background:#e9e7e4;display:grid;place-items:center;overflow:hidden}.modal-body iframe{width:100%;height:100%;border:0;background:#fff}.modal-body img{width:100%;height:100%;object-fit:contain;padding:1rem}
 
+    /* Responsive safeguards */
+    @media(max-width:1179px){
+    }
+    @media(max-width:959px){
+      .hero{min-height:auto}
+      .hero-grid{min-height:auto;padding:6.8rem 0 2.8rem;gap:1.1rem}
+      .hero-copy{max-width:44rem}
+      .hero-visual{min-height:clamp(28rem,105vw,36rem);margin-top:.35rem}
+      .portrait-stage{width:min(100%,32rem);height:clamp(28rem,105vw,36rem)}
+      .hero-person{width:min(92%,28rem)}
+      .floating-card{left:50%;bottom:.45rem;transform:translateX(-50%);width:min(20rem,calc(100% - 1rem))}
+      .status-inner{justify-content:flex-start;flex-wrap:wrap}
+      .status-inner span:last-child{margin-left:auto}
+    }
+    @media(max-width:679px){
+      .header-inner{padding:1rem 0}
+      .brand{font-size:.95rem}
+      .hero-grid{padding-top:6rem}
+      .hero h1{font-size:clamp(2.65rem,13vw,4.35rem);line-height:.92;max-width:9.5ch}
+      .hero-desc{font-size:.94rem;line-height:1.6}
+      .hero-meta{gap:.45rem .65rem;font-size:.73rem}
+      .hero-ctas{width:100%}
+      .hero-ctas .pill{justify-content:space-between;flex:1 1 12rem}
+      .hero-visual{min-height:clamp(26rem,118vw,33rem)}
+      .portrait-stage{height:clamp(26rem,118vw,33rem)}
+      .portrait-stage::before{inset:10% 2% 0}
+      .floating-inner{grid-template-columns:3.3rem minmax(0,1fr)}
+      .floating-card{width:min(19rem,calc(100% - .5rem));padding:.45rem}
+      .floating-text{min-width:0;padding:.62rem .7rem}
+      .floating-title{font-size:.8rem;overflow-wrap:anywhere}
+      .hero-status{margin-top:0}
+      .status-inner{font-size:.62rem;line-height:1.45;padding:.9rem 0}
+      .status-inner span:last-child{display:none}
+      .about,.org-section,.cert-section{padding-top:5rem;padding-bottom:5.5rem}
+      .band{padding-bottom:4.5rem}
+      .experience{padding:4.5rem 0 5.5rem}
+      .section-head{margin-bottom:2.2rem}
+      .exp-card{min-height:29rem;border-radius:1.5rem}
+      .exp-content{inset:auto 1.15rem 1.15rem}
+      .exp-card h3{font-size:1.65rem}
+      .exp-card.mnc{padding:1.15rem}
+      .mnc-preview{width:72%;max-width:15rem}
+      .org-row{grid-template-columns:2rem minmax(0,1fr) 2.3rem;gap:.65rem;padding:1.15rem 0}
+      .org-action{width:2.3rem;height:2.3rem}
+      .cert-toolbar{align-items:flex-start;margin-top:1.7rem}
+      .cert-count{width:100%}
+      .cert-card{min-height:17rem;border-radius:1.35rem}
+      .cert-info h3{font-size:1rem}
+      .vault{padding-bottom:5.5rem}
+      .vault-panel{padding:1.4rem .95rem;border-radius:1.5rem}
+      .menu-bottom{flex-direction:column;align-items:flex-start}
+      .modal{padding:.55rem}
+      .modal-panel{height:min(92vh,52rem);border-radius:1rem}
+      .modal-head{padding:.7rem .75rem}
+      .modal-actions a,.modal-actions button{padding:.46rem .56rem;font-size:.66rem}
+    }
+    @media(max-width:420px){
+      .shell{width:calc(100% - 1rem)}
+      .hero h1{font-size:clamp(2.45rem,13vw,3.55rem)}
+      .hero-ctas{flex-direction:column}
+      .hero-ctas .pill{width:100%;flex:auto}
+      .band-row{grid-template-columns:1fr 1fr;gap:.5rem}
+      .band-pill{min-height:5rem;font-size:1.15rem}
+      .mnc-preview{width:82%}
+      .filters{gap:.35rem}.filter-btn{font-size:.68rem;padding:.5rem .68rem}
+      .menu-link{font-size:clamp(2rem,12vw,3.2rem);padding-inline:.9rem}
+    }
+
     /* Reveals */
     .reveal{opacity:0;transform:translateY(28px);transition:.75s cubic-bezier(.16,1,.3,1)}.reveal.in{opacity:1;transform:none}
     @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
@@ -286,13 +354,6 @@
                   <div class="floating-dots" id="float-dots"></div>
                 </div>
               </div>
-            </div>
-            <div class="hero-organizations">
-              <div class="label">Experience &amp; learning across</div>
-              <span class="org-chip">MNC Channels</span>
-              <span class="org-chip">Chery</span>
-              <span class="org-chip">Universitas Pembangunan Jaya</span>
-              <span class="org-chip">Coursera</span>
             </div>
           </div>
         </div>
@@ -387,11 +448,11 @@
         <div class="section-head reveal">
           <div class="eyebrow">Certifications &amp; Continuous Learning</div>
           <h2 class="section-title">Learning that supports the work.</h2>
-          <p class="section-copy">Sebelas course certificate dari Coursera dengan issuer seperti Adobe, Digital Marketing Institute, Unilever, University of Michigan, dan Universitas Pembangunan Jaya.</p>
+          <p class="section-copy">Dua belas course certificate dari Coursera dengan issuer seperti Adobe, Digital Marketing Institute, Unilever, University of Michigan, dan Universitas Pembangunan Jaya.</p>
         </div>
         <div class="cert-toolbar reveal">
           <div class="filters"><button class="filter-btn active" data-filter="all">All</button><button class="filter-btn" data-filter="marketing">Marketing</button><button class="filter-btn" data-filter="content">Content</button><button class="filter-btn" data-filter="tech">AI &amp; Tech</button><button class="filter-btn" data-filter="culture">Brand &amp; Culture</button></div>
-          <div class="cert-count"><span id="cert-visible">11</span> credentials shown</div>
+          <div class="cert-count"><span id="cert-visible">12</span> credentials shown</div>
         </div>
         <div class="cert-grid" id="cert-grid"></div>
       </div>
@@ -478,6 +539,7 @@
       {title:'Creative Urban Culture',provider:'Universitas Pembangunan Jaya · Coursera',date:'11 Dec 2025',cat:'culture',img:'assets/images/cert-7.jpg',doc:'assets/certs/coursera-7.pdf'},
       {title:'Blockchain and Cryptocurrency Explained',provider:'University of Michigan · Coursera',date:'11 Dec 2025',cat:'tech',img:'assets/images/cert-8.jpg',doc:'assets/certs/coursera-8.pdf'},
       {title:'Advanced Tools for Digital Marketing Analytics',provider:'Unilever · Coursera',date:'09 Dec 2025',cat:'marketing',img:'assets/images/cert-9.jpg',doc:'assets/certs/coursera-9.pdf'},
+      {title:'Digital Marketing & E-Commerce Strategy',provider:'Universitas Pembangunan Jaya · Coursera',date:'09 Dec 2025',cat:'marketing',img:'assets/images/cert-12.jpg',doc:'assets/certs/coursera-12.pdf'},
       {title:'Innovations in Investment Technology: Artificial Intelligence',provider:'University of Michigan · Coursera',date:'09 Dec 2025',cat:'tech',img:'assets/images/cert-10.jpg',doc:'assets/certs/coursera-10.pdf'},
       {title:'Raising Capital: Credit Tech, Coin Offerings, and Crowdfunding',provider:'University of Michigan · Coursera',date:'09 Dec 2025',cat:'tech',img:'assets/images/cert-11.jpg',doc:'assets/certs/coursera-11.pdf'}
     ];
@@ -495,7 +557,7 @@
     const highlights=[
       ['Media Production','Production Assistant · MNC Channels'],
       ['Customer Experience','Sales Consultant · Chery'],
-      ['Continuous Learning','11 Coursera course certificates']
+      ['Continuous Learning','12 Coursera course certificates']
     ];
     let hi=0; const fk=document.getElementById('float-kicker'),ft=document.getElementById('float-title'),fd=document.getElementById('float-dots');
     function drawHighlight(){fk.textContent=highlights[hi][0];ft.textContent=highlights[hi][1];fd.innerHTML=highlights.map((_,i)=>`<span class="floating-dot ${i===hi?'active':''}"></span>`).join('')}
